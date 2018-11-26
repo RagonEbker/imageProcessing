@@ -1,0 +1,14 @@
+## Created: 2017-09-21
+## Input : Picture as Matrix B and size of the Filter N (should be between 50 and 120).
+##Output ; Picture as Matrix A, Fourier filtered.
+
+function [A] = filterThis (B, N)
+
+  C = fftshift(fft2(B));
+  [x,y] = size(B);
+  D = 1-filterOnes(x,y,N);
+  D = double(D);
+  A = real(ifft2(ifftshift(C.*D)));
+  imshow(A, [])
+  
+endfunction
